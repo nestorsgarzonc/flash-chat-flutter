@@ -1,6 +1,4 @@
-import 'package:flash_chat_flutter/screens/chat_screen.dart';
-import 'package:flash_chat_flutter/screens/login_screen.dart';
-import 'package:flash_chat_flutter/screens/registration_screen.dart';
+import 'package:flash_chat_flutter/constants.dart';
 import 'package:flash_chat_flutter/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,12 +16,7 @@ class MyApp extends StatelessWidget {
       ),
       title: 'Material App',
       initialRoute: WelcomeScreen.id,
-      routes: {
-        WelcomeScreen.id: (BuildContext context) => WelcomeScreen(),
-        LoginScreen.id: (BuildContext context) => LoginScreen(),
-        RegistrationScreen.id: (BuildContext context) => RegistrationScreen(),
-        ChatScreen.id: (BuildContext context) => ChatScreen(),
-      },
+      routes: routes,
     );
   }
 }
