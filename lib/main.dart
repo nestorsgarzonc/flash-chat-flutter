@@ -17,12 +17,12 @@ class MyApp extends StatelessWidget {
         ),
       ),
       title: 'Material App',
-      initialRoute: 'welcome_screen',
+      initialRoute: WelcomeScreen.id,
       routes: {
-        'welcomeScreen': (BuildContext context) => WelcomeScreen(),
-        'login_screen': (BuildContext context) => LoginScreen(),
-        'register_screen': (BuildContext context) => RegistrationScreen(),
-        'chat_screen': (BuildContext context) => ChatScreen(),
+        WelcomeScreen.id: (BuildContext context) => WelcomeScreen(),
+        LoginScreen.id: (BuildContext context) => LoginScreen(),
+        RegistrationScreen.id: (BuildContext context) => RegistrationScreen(),
+        ChatScreen.id: (BuildContext context) => ChatScreen(),
       },
     );
   }
