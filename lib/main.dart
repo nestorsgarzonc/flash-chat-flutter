@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           body1: TextStyle(color: Colors.black54),
         ),
+        scaffoldBackgroundColor: Colors.white,
+        inputDecorationTheme: kInputDecorationTheme,
       ),
       title: 'Material App',
       initialRoute: WelcomeScreen.id,
