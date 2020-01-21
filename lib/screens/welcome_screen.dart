@@ -1,8 +1,8 @@
-import 'package:flash_chat_flutter/constants.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flash_chat_flutter/screens/login_screen.dart';
 import 'package:flash_chat_flutter/screens/registration_screen.dart';
 import 'package:flash_chat_flutter/widgets/botton_login.dart';
+import 'package:flash_chat_flutter/widgets/hero_logo.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -51,8 +51,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             BottonsLogin(
               function: () => Navigator.pushNamed(context, LoginScreen.id),
               buttonText: 'Log In',
+              color: Colors.lightBlueAccent,
             ),
             BottonsLogin(
+              color: Colors.blueAccent,
               function: () =>
                   Navigator.pushNamed(context, RegistrationScreen.id),
               buttonText: 'Sign In',
@@ -66,9 +68,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   Row logoApp() {
     return Row(
       children: <Widget>[
-        Hero(
-          tag: 'logo',
-          child: Container(child: Image.asset(imageLogo), height: 60.0),
+        HeroLogo(
+          imageHeight: 60,
         ),
         TypewriterAnimatedTextKit(
           speed: Duration(seconds: 1),

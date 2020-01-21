@@ -20,7 +20,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            HeroLogo(),
+            HeroLogo(imageHeight: 250),
             SizedBox(height: 48.0),
             EmailTextField(onChangedValue: (value) {}),
             SizedBox(height: 8.0),
@@ -29,6 +29,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             BottonsLogin(
               function: () {},
               buttonText: 'Register',
+              color: Colors.blueAccent,
             ),
           ],
         ),

@@ -21,15 +21,18 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            HeroLogo(),
+            HeroLogo(imageHeight: 250),
             SizedBox(height: 48.0),
-            EmailTextField(onChangedValue: (value) {}),
+            EmailTextField(onChangedValue: (value) {
+              print(value);
+            }),
             SizedBox(height: 8.0),
             PasswordTextField(onChangedValue: (value) {}),
             SizedBox(height: 24.0),
             BottonsLogin(
               function: () {},
               buttonText: 'Log in',
+              color: Colors.blueAccent,
             ),
           ],
         ),

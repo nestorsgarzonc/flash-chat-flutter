@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class BottonsLogin extends StatelessWidget {
   final Function function;
   final String buttonText;
-  BottonsLogin({@required this.function, @required this.buttonText});
+  final Color color;
+  BottonsLogin({@required this.function, @required this.buttonText, @required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class BottonsLogin extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
         elevation: 5.0,
-        color: Colors.lightBlueAccent,
+        color: color,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
           onPressed: function,

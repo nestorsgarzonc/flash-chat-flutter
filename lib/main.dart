@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
         inputDecorationTheme: kInputDecorationTheme,
+        cursorColor: Colors.blueAccent
       ),
       title: 'Material App',
       initialRoute: WelcomeScreen.id,
