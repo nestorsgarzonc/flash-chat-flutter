@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         inputDecorationTheme: kInputDecorationTheme,
         cursorColor: Colors.blueAccent
       ),
-      title: 'Material App',
+      title: 'Flash chat',
       initialRoute: WelcomeScreen.id,
       routes: routes,
     );
