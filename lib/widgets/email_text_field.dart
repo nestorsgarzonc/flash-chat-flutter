@@ -8,6 +8,7 @@ class EmailTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       onChanged: onChangedValue,
+      keyboardType: TextInputType.emailAddress,
       style: TextStyle(color: Colors.black),
       decoration: InputDecoration(
         hintText: 'Enter your email',

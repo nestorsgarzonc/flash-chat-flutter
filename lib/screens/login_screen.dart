@@ -23,9 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: <Widget>[
             HeroLogo(imageHeight: 250),
             SizedBox(height: 48.0),
-            EmailTextField(onChangedValue: (value) {
-              print(value);
-            }),
+            EmailTextField(onChangedValue: (value) {}),
             SizedBox(height: 8.0),
             PasswordTextField(onChangedValue: (value) {}),
             SizedBox(height: 24.0),

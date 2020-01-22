@@ -8,6 +8,7 @@ class PasswordTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       onChanged: onChangedValue,
+      keyboardType: TextInputType.visiblePassword,
       style: TextStyle(color: Colors.black),
       obscureText: true,
       decoration: InputDecoration(
