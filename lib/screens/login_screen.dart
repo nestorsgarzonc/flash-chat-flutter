@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flash_chat_flutter/screens/chat_screen.dart';
 import 'package:flash_chat_flutter/widgets/botton_login.dart';
 import 'package:flash_chat_flutter/widgets/email_text_field.dart';
 import 'package:flash_chat_flutter/widgets/hero_logo.dart';
@@ -11,6 +13,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _auth = FirebaseAuth.instance;
+  String password;
+  String email;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,12 +29,26 @@ class _LoginScreenState extends State<LoginScreen> {
           children: <Widget>[
             HeroLogo(imageHeight: 250),
             SizedBox(height: 48.0),
-            EmailTextField(onChangedValue: (value) {}),
+            EmailTextField(onChangedValue: (value) {
+              email = value;
+            }),
             SizedBox(height: 8.0),
-            PasswordTextField(onChangedValue: (value) {}),
+            PasswordTextField(onChangedValue: (value) {
+              password = value;
+            }),
             SizedBox(height: 24.0),
             BottonsLogin(
-              function: () {},
+              function: () async {
+                try {
+                  final loggedUser = await _auth.signInWithEmailAndPassword(
+                      email: email, password: password);
+                  if (loggedUser != null) {
+                    Navigator.pushNamed(context, ChatScreen.id);
+                  }
+                } catch (e) {
+                  print(e);
+                }
+              },
               buttonText: 'Log in',
               color: Colors.blueAccent,
             ),
