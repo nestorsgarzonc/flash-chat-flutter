@@ -9,11 +9,12 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
+FirebaseUser loggedInUser;
+
 class _ChatScreenState extends State<ChatScreen> {
   final messageTextController = TextEditingController();
   final _auth = FirebaseAuth.instance;
   final _firestore = Firestore.instance;
-  FirebaseUser loggedInUser;
   String messageText;
 
   @override
@@ -112,14 +113,16 @@ class MessagesStream extends StatelessWidget {
             ),
           );
         }
-        final messages = snapshot.data.documents;
+        final messages = snapshot.data.documents.reversed;
         List<BubbleMessage> messageWidgets = [];
         for (var message in messages) {
           final messageText = message.data['text'];
           final messageSender = message.data['sender'];
+          final currentUser = loggedInUser.email;
           final messageWidget = BubbleMessage(
             messageSender: messageSender,
             messageText: messageText,
+            isMe: currentUser == messageSender,
           );
           messageWidgets.add(messageWidget);
         }
@@ -127,6 +130,7 @@ class MessagesStream extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             children: messageWidgets,
+            reverse: true,
           ),
         );
       },
@@ -137,35 +141,46 @@ class MessagesStream extends StatelessWidget {
 class BubbleMessage extends StatelessWidget {
   final String messageText;
   final String messageSender;
-  BubbleMessage({this.messageSender, this.messageText});
+  final bool isMe;
+  BubbleMessage({this.messageSender, this.messageText, this.isMe});
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
           Text(
             messageSender,
             style: TextStyle(fontSize: 14, color: Colors.black54),
           ),
-          bubbleMessage(),
+          bubbleMessage(isMe ? Colors.lightBlueAccent : Colors.white),
         ],
       ),
     );
   }
 
-  Material bubbleMessage() {
+  Material bubbleMessage(Color color) {
     return Material(
       elevation: 5.0,
-      borderRadius: BorderRadius.circular(30),
-      color: Colors.lightBlueAccent,
+      borderRadius: BorderRadius.only(
+        topRight: isMe ? Radius.circular(0) : Radius.circular(30),
+        topLeft: isMe ? Radius.circular(30) : Radius.circular(0),
+        bottomLeft: Radius.circular(30),
+        bottomRight: Radius.circular(30),
+      ),
+      color: color,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Text(
           '$messageText',
-          style: TextStyle(fontSize: 15.0, color: Colors.white),
+          style: TextStyle(
+            fontSize: 15.0,
+            color:
+                color == Colors.lightBlueAccent ? Colors.white : Colors.black,
+          ),
         ),
       ),
     );
